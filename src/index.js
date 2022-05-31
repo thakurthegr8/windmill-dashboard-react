@@ -6,6 +6,8 @@ import { SidebarProvider } from './context/SidebarContext'
 import ThemedSuspense from './components/ThemedSuspense'
 import { Windmill } from '@windmill/react-ui'
 import * as serviceWorker from './serviceWorker'
+import {Provider} from "react-redux";
+import store from "./store"
 
 // if (process.env.NODE_ENV !== 'production') {
 //   const axe = require('react-axe')
@@ -13,13 +15,15 @@ import * as serviceWorker from './serviceWorker'
 // }
 
 ReactDOM.render(
+  <Provider store={store}>
   <SidebarProvider>
     <Suspense fallback={<ThemedSuspense />}>
       <Windmill usePreferences>
         <App />
       </Windmill>
     </Suspense>
-  </SidebarProvider>,
+  </SidebarProvider>
+  </Provider>,
   document.getElementById('root')
 )
 
